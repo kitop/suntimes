@@ -83,7 +83,7 @@ var axisGroup = svg.append("g")
 
 
 axisGroup.selectAll(".yTicks")
-    .data(d3.range(5, 22))
+    .data(d3.range(1, 24))
   .enter().append("line")
     .attr("class", "yTicks")
     .attr("x1", -5)
@@ -114,7 +114,7 @@ axisGroup.selectAll("text.xAxisTop")
     .text(function(d, i){ return monthNames[i] });
 
 axisGroup.selectAll("text.yAxisLeft")
-    .data(d3.range(5, 22))
+    .data(d3.range(1, 24))
   .enter().append("text")
     .attr("class", "yAxisLeft")
     .attr("x", -7)
