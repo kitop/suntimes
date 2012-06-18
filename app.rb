@@ -12,8 +12,16 @@ Cuba.define do
   on get do
     on root do
       @cities = {
-        "Buenos Aires"  => "buenos-aires",
-        "New York"      => "new-york"
+        "Buenos Aires"    => "buenos-aires",
+        "Rio de Janeiro"  => "rio-de-janeiro",
+        "Miami"           => "miami",
+        "San Francisco"   => "san-francisco",
+        "New York"        => "new-york",
+        "London"          => "london",
+        "Sydney"          => "sydney",
+        "Barcelona"       => "barcelona",
+        "Tokyo"           => "tokyo",
+        "Moscow"          => "moscow"
       }
       res.write view(:index)
     end
