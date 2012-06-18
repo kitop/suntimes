@@ -149,7 +149,7 @@ var noonLine = d3.svg.line()
     .y(function(d){ return y ( new Date(2011, 0, 1, d.noon[0], d.noon[1]) ) })
 
 // finally, draw a line representing 12:00 across the entire
-// visualization
+// visualization on a new g element, so it stays on top
 svg.append("g")
     .attr("transform", "translate("+padding+","+padding+")")
   .append("line")
@@ -172,8 +172,8 @@ d3.json("/data/2011/buenos-aires.json", function(json){
   data = json
 
   lineGroup.append("path")
-      .attr("d", daylightLine(data))
       .attr("class", "daylight")
+      .attr("d", daylightLine(data))
 
   lineGroup.append("path")
       .data(data)
