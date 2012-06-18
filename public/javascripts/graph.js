@@ -87,7 +87,7 @@ axisGroup.selectAll(".yTicks")
   .enter().append("line")
     .attr("class", "yTicks")
     .attr("x1", -5)
-    .attr("x2", width + 5)
+    .attr("x2", width)
     .attr("y1",function(d) { return y(new Date(2011, 0, 1, d)); })
     .attr("y2",function(d) { return y(new Date(2011, 0, 1, d)); });
 
@@ -98,7 +98,7 @@ axisGroup.selectAll(".xTicks")
     .attr("x1", x)
     .attr("x2", x)
     .attr("y1", -5)
-    .attr("y2", height + 5);
+    .attr("y2", height);
 
 // draw the text for the labels. Since it is the same on top and
 // bottom, there is probably a cleaner way to do this by copying the
