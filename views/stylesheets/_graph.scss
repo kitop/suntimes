@@ -7,11 +7,11 @@ svg{
 }
 
 .background{
-/*    fill: lightyellow; */
+    fill: url(#night-gradient);
 }
 
-.sunrise, .sunset{
-/*    fill: steelblue; */
+.daylight{
+    fill: url(#daylight-gradient);
 }
 
 .noon{

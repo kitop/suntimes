@@ -35,38 +35,31 @@ var nightStart = "steelblue"
 var nightEnd = d3.rgb(nightStart).darker(0.9).toString()
 
 var defs = svg.append("defs");
-var sunriseGradient = defs.append('linearGradient')
-    .attr("id", "sunrise-gradient")
+var nightGradient = defs.append('linearGradient')
+    .attr("id", "night-gradient")
     .attr("x1", "0%")
     .attr("x2", "0%")
     .attr("y1", "0%")
     .attr("y2", "100%");
-sunriseGradient.append('stop')
+nightGradient.append('stop')
     .attr("offset", "0%")
     .attr("stop-color", nightEnd)
     .attr("stop-opacity", "1");
-sunriseGradient.append('stop')
-    .attr("offset", "100%")
+nightGradient.append('stop')
+    .attr("offset", "30%")
     .attr("stop-color", nightStart)
     .attr("stop-opacity", "1");
-
-var sunsetGradient = defs.append('linearGradient')
-    .attr("id", "sunset-gradient")
-    .attr("x1", "0%")
-    .attr("x2", "0%")
-    .attr("y1", "0%")
-    .attr("y2", "100%");
-sunsetGradient.append('stop')
-    .attr("offset", "0%")
+nightGradient.append('stop')
+    .attr("offset", "70%")
     .attr("stop-color", nightStart)
     .attr("stop-opacity", "1");
-sunsetGradient.append('stop')
+nightGradient.append('stop')
     .attr("offset", "100%")
     .attr("stop-color", nightEnd)
     .attr("stop-opacity", "1");
 
 var dayGradient = defs.append('linearGradient')
-    .attr("id", "day-gradient")
+    .attr("id", "daylight-gradient")
     .attr("x1", "0%")
     .attr("x2", "0%")
     .attr("y1", "0%")
@@ -139,20 +132,14 @@ var lineGroup = svg.append("g")
 
 var bg = lineGroup.append("rect")
     .attr("class", "background")
-    .attr("fill", "url(#day-gradient)")
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", width)
     .attr("height", height);
 
-var sunriseLine = d3.svg.area()
+var daylightLine = d3.svg.area()
     .x(function(d){ return x(d.date) })
-    .y1(function(d){ return y(new Date(2011, 0, 1, d.sunrise[0], d.sunrise[1]))})
-    .interpolate("linear");
-
-var sunsetLine = d3.svg.area()
-    .x(function(d){ return x(d.date) })
-    .y0(height)
+    .y0(function(d){ return y( new Date(2011, 0, 1, d.sunrise[0], d.sunrise[1])) })
     .y1(function(d){ return y( new Date(2011, 0, 1, d.sunset[0], d.sunset[1])) })
     .interpolate("linear");
 
@@ -163,8 +150,9 @@ var noonLine = d3.svg.line()
 
 // finally, draw a line representing 12:00 across the entire
 // visualization
-
-lineGroup.append("line")
+svg.append("g")
+    .attr("transform", "translate("+padding+","+padding+")")
+  .append("line")
     .attr("class", "noon")
     .attr("x1", 0)
     .attr("x2", width)
@@ -184,14 +172,8 @@ d3.json("/data/2011/buenos-aires.json", function(json){
   data = json
 
   lineGroup.append("path")
-      .attr("d", sunriseLine(data))
-      .attr("class", "sunrise")
-      .attr("fill", "url(#sunrise-gradient)");
-
-  lineGroup.append("path")
-      .attr("d", sunsetLine(data))
-      .attr("class", "sunset")
-      .attr("fill", "url(#sunset-gradient)");
+      .attr("d", daylightLine(data))
+      .attr("class", "daylight")
 
   lineGroup.append("path")
       .data(data)
