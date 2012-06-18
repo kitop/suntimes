@@ -171,14 +171,26 @@ lineGroup.append("path")
 
 // finally, draw a line representing 12:00 across the entire
 // visualization on a new g element, so it stays on top
-svg.append("g")
+var topLines = svg.append("g")
     .attr("transform", "translate("+padding+","+padding+")")
-  .append("line")
+
+topLines.append("line")
     .attr("class", "noon")
     .attr("x1", 0)
     .attr("x2", width)
-    .attr("y1", function(){return y(new Date(2011, 0, 1, 12))} )
-    .attr("y2", function(){return y(new Date(2011, 0, 1, 12))} )
+    .attr("y1", function(){ return d3.round( y(new Date(2011, 0, 1, 12)) ) } )
+    .attr("y2", function(){ return d3.round( y(new Date(2011, 0, 1, 12)) ) } )
+
+var seasons = [2, 5, 8, 11];
+for(var i=0; i < seasons.length; ++i){
+  var line = d3.round( x(new Date(2011, seasons[i], 21)) );
+  topLines.append("line")
+      .attr("class", "season")
+      .attr("x1", line)
+      .attr("x2", line)
+      .attr("y1", 0)
+      .attr("y2", height)
+}
 
 
 
