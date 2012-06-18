@@ -148,6 +148,27 @@ var noonLine = d3.svg.line()
     .x(function(d){ return x(d.date)})
     .y(function(d){ return y ( new Date(2011, 0, 1, d.noon[0], d.noon[1]) ) })
 
+
+var minDate = x.domain()[0],
+    maxDate = x.domain()[1];
+var baseLight = d3.time.day.range(minDate, maxDate, 1).map(
+                  function(d){ return {date: d, sunrise:[6,0], sunset: [18,0], noon:[12, 0]} }
+                );
+// horrible hack to get the last day
+baseLight.push({date: d3.time.day.offset(maxDate, 1), sunrise:[6,0], sunset: [18,0], noon:[12, 0]});
+
+// draw the initial daylight
+lineGroup.append("path")
+    .data([baseLight])
+    .attr("class", "daylight")
+    .attr("d", daylightLine)
+// draw the intial solar noon
+lineGroup.append("path")
+    .data([baseLight])
+    .attr("class", "solar-noon")
+    .attr("d", noonLine)
+
+
 // finally, draw a line representing 12:00 across the entire
 // visualization on a new g element, so it stays on top
 svg.append("g")
@@ -171,13 +192,35 @@ d3.json("/data/2011/buenos-aires.json", function(json){
 
   data = json
 
-  lineGroup.append("path")
-      .attr("class", "daylight")
-      .attr("d", daylightLine(data))
+  //update day Area
+  var dayArea = lineGroup.selectAll("path.daylight")
+      .data([data], function(d){ return d.date });
 
-  lineGroup.append("path")
+  dayArea
+      .transition()
+      .duration(500)
+      .attr("d", daylightLine)
+
+  dayArea.enter().append("path")
+      .attr("class", "daylight")
+      .attr("d", daylightLine)
+
+  dayArea.exit().remove()
+
+  //update solar noon
+  var solarNoon = lineGroup.selectAll("path.solar-noon")
+      .data([data], function(d){ return d.date });
+
+  solarNoon
+      .transition()
+      .duration(500)
+      .attr("d", noonLine)
+
+  solarNoon.enter().append("path")
       .data(data)
       .attr("class", "solar-noon")
-      .attr("d", noonLine(data));
+      .attr("d", noonLine);
+
+  solarNoon.exit().remove()
 
 })
