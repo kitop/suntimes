@@ -11,6 +11,10 @@ Cuba.use Rack::Deflater
 Cuba.define do
   on get do
     on root do
+      @cities = {
+        "Buenos Aires"  => "buenos-aires",
+        "New York"      => "new-york"
+      }
       res.write view(:index)
     end
 

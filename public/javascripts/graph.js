@@ -187,40 +187,46 @@ svg.append("g")
 // for the x coordinate and sunrise and sunset (respectively) for the y
 // coordinate. The sunrise shape is anchored at the top of the chart, and
 // sunset area is anchored at the bottom of the chart.
+function updateGraph(city){
+  d3.json("/data/2011/"+city+".json", function(json){
 
-d3.json("/data/2011/buenos-aires.json", function(json){
+    data = json
 
-  data = json
+    //update day Area
+    var dayArea = lineGroup.selectAll("path.daylight")
+        .data([data], function(d){ return d.date });
 
-  //update day Area
-  var dayArea = lineGroup.selectAll("path.daylight")
-      .data([data], function(d){ return d.date });
+    dayArea
+        .transition()
+        .duration(500)
+        .attr("d", daylightLine)
 
-  dayArea
-      .transition()
-      .duration(500)
-      .attr("d", daylightLine)
+    dayArea.enter().append("path")
+        .attr("class", "daylight")
+        .attr("d", daylightLine)
 
-  dayArea.enter().append("path")
-      .attr("class", "daylight")
-      .attr("d", daylightLine)
+    dayArea.exit().remove()
 
-  dayArea.exit().remove()
+    //update solar noon
+    var solarNoon = lineGroup.selectAll("path.solar-noon")
+        .data([data], function(d){ return d.date });
 
-  //update solar noon
-  var solarNoon = lineGroup.selectAll("path.solar-noon")
-      .data([data], function(d){ return d.date });
+    solarNoon
+        .transition()
+        .duration(500)
+        .attr("d", noonLine)
 
-  solarNoon
-      .transition()
-      .duration(500)
-      .attr("d", noonLine)
+    solarNoon.enter().append("path")
+        .data(data)
+        .attr("class", "solar-noon")
+        .attr("d", noonLine);
 
-  solarNoon.enter().append("path")
-      .data(data)
-      .attr("class", "solar-noon")
-      .attr("d", noonLine);
+    solarNoon.exit().remove()
 
-  solarNoon.exit().remove()
+  })
+};
 
-})
+$("#city-select").on("change", function(){
+  updateGraph( $(this).val() );
+}).change();
+
