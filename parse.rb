@@ -24,10 +24,18 @@ days = []
 
     date = Time.parse tds[0].text
 
+    sunrise = tds[1].text.sub('-', '').split(':').map(&:to_i)
+
+    #check for edge cases like iceland or greenland
+    sunset = tds[2].text.sub('-', '').split(':').map(&:to_i)
+    if sunset[0] == 0 or sunset.empty?
+      sunset = [23, 59]
+    end
+
     {
       date: date.to_i * 1000,
-      sunrise: tds[1].text.split(':').map(&:to_i),
-      sunset: tds[2].text.split(':').map(&:to_i),
+      sunrise: sunrise,
+      sunset: sunset,
       noon: tds[5].text.split(':').map(&:to_i)
     }
   end.compact
