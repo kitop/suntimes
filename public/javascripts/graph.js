@@ -179,7 +179,7 @@ lineGroup.append("line")
 // coordinate. The sunrise shape is anchored at the top of the chart, and
 // sunset area is anchored at the bottom of the chart.
 
-d3.json("/data/2011/buenos-aires2.json", function(json){
+d3.json("/data/2011/buenos-aires.json", function(json){
 
   data = json
 
