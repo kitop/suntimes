@@ -226,7 +226,16 @@ function updateGraph(city){
   })
 };
 
-$("#city-select").on("change", function(){
-  updateGraph( $(this).val() );
-}).change();
+var citySelect = $("#city-select").on("change", function(){
+  var city = $(this).val();
+  updateGraph( city );
+  window.location.hash = city
+})
+
+initialHash = window.location.hash.replace(/#/, '');
+if(initialHash){
+  citySelect.val(initialHash);
+}
+
+citySelect.change();
 
