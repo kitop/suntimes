@@ -5,7 +5,6 @@ Cuba.use Rack::Static,
   root: "public",
   urls: ["/javascripts", "/images", "/favicon.ico", "/data"]
 
-Cuba.use Rack::Deflater
 
 
 Cuba.define do
