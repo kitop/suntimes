@@ -1,0 +1,7 @@
+.gs
+.sass-cache
+.bundle
+.DS_Store*
+
+log/*.log
+tmp/**/*
