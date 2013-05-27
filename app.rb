@@ -1,10 +1,13 @@
-Cuba.settings[:template_engine] = "haml"
+require "cuba"
+require "cuba/render"
+
 Cuba.plugin Cuba::Render
+Cuba.settings[:render][:template_engine] = "haml"
+
 
 Cuba.use Rack::Static,
   root: "public",
   urls: ["/javascripts", "/images", "/favicon.ico", "/data"]
-
 
 
 Cuba.define do
@@ -50,7 +53,7 @@ Cuba.define do
         "USA, New York"               => "new-york",
         "USA, San Francisco"          => "san-francisco"
       }
-      res.write view(:index)
+      res.write view("index")
     end
 
     on "stylesheets", extension("css") do |file|

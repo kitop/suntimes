@@ -1,4 +1,6 @@
-source :rubygems
+source 'https://rubygems.org'
+
+ruby '2.0.0'
 
 gem 'tilt'
 gem 'cuba', require: ["cuba", "cuba/render"]
