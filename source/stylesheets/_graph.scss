@@ -1,0 +1,27 @@
+svg{
+    fill: gray;
+}
+
+.yTicks, .xTicks{
+    stroke: lightgray;
+}
+
+.background{
+    fill: url(#night-gradient);
+}
+
+.daylight{
+    fill: url(#daylight-gradient);
+}
+
+.noon{
+    stroke: lightgray;
+}
+.season{
+    stroke: lightgray;
+    opacity: 0.4;
+}
+.solar-noon{
+    stroke: yellow;
+    fill: none;
+}

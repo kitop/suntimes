@@ -1,0 +1,8 @@
+#content
+  %h1 
+    Sunrise, noon, and sunset in 
+    %select#city-select
+      - data.cities.each do |city|
+        %option{value: city["name"].parameterize, data: { lat: city["lat"], lng: city["lng"], tz: city["timezone"] } }
+          = city["name"]
+

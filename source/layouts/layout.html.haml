@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %meta{charset: "UTF-8"}
+    %title Sunrise, noon, and sunset
+
+    = stylesheet_link_tag "styles.css"
+    %link{ rel: "icon", type: "image/x-icon", href:"/favicon.ico" }
+
+  %body
+    = yield
+
+    = javascript_include_tag "all"
+
