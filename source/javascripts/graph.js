@@ -195,6 +195,7 @@ for(var i=0; i < seasons.length; ++i){
 
 var generateDataFor = function(city){
   var data = []
+  var zoneFunction = city.timezone.match(/:/) ? 'zone' : 'tz';
 
   var initialDate = new Date(2011, 0, 1, 0).getTime();
 
@@ -203,12 +204,12 @@ var generateDataFor = function(city){
     var date  = new Date(initialDate + i * 86000 * 1000);
     var times = SunCalc.getTimes(date, city.lat, city.lng);
 
-    var noon    = moment(times.solarNoon).zone(city["timezone"]);
+    var noon    = moment(times.solarNoon)[zoneFunction](city.timezone);
     var sunrise = times.sunrise != "Invalid Date" ?
-                    moment(times.sunrise).zone(city["timezone"]) :
+                    moment(times.sunrise)[zoneFunction](city.timezone) :
                     { hours: function(){ return 0 }, minutes: function(){ return 0 } };
     var sunset  = times.sunset != "Invalid Date" ?
-                    moment(times.sunset).zone(city["timezone"]) :
+                    moment(times.sunset)[zoneFunction](city.timezone) :
                     { hours: function(){ return 23 }, minutes: function(){ return 59 } };
 
     data.push({ date:    date,

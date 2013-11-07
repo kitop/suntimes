@@ -1,7 +1,7 @@
 [
   { "name": "Argentina, Buenos Aires",       "lat": -34.6033,   "lng": -58.3817, "timezone": "-03:00" },
-  { "name": "Australia, Sydney",             "lat": 0,   "lng": 0, "timezone": "00:00" },
-  { "name": "Bahamas, Nassau",               "lat": 0,   "lng": 0, "timezone": "00:00" },
+  { "name": "Australia, Sydney",             "lat": -33.8600,   "lng": 151.2111, "timezone": "Australia/Sydney" },
+  { "name": "Bahamas, Nassau",               "lat": 25.0600,   "lng": -77.3450, "timezone": "America/Nassau" },
   { "name": "Bolivia, La Paz",               "lat": 0,   "lng": 0, "timezone": "00:00" },
   { "name": "Brazil, Rio de Janeiro",        "lat": 0,   "lng": 0, "timezone": "00:00" },
   { "name": "Brazil, Fortaleza",             "lat": 0,   "lng": 0, "timezone": "00:00" },
@@ -36,6 +36,6 @@
   { "name": "USA, Anchorage, Alaska",        "lat": 0,   "lng": 0, "timezone": "00:00" },
   { "name": "USA, Honolulu, Hawaii",         "lat": 0,   "lng": 0, "timezone": "00:00" },
   { "name": "USA, Miami",                    "lat": 0,   "lng": 0, "timezone": "00:00" },
-  { "name": "USA, New York",                 "lat": 42.3482,   "lng": -75.1890, "timezone": "-04:00" },
+  { "name": "USA, New York",                 "lat": 42.3482,   "lng": -75.1890, "timezone": "America/New_York" },
   { "name": "USA, San Francisco",            "lat": 0,   "lng": 0, "timezone": "00:00" }
 ]
