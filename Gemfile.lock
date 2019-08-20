@@ -9,7 +9,7 @@ GEM
       tilt
     nokogiri (1.5.9)
     oj (2.0.14)
-    rack (1.6.4)
+    rack (1.6.11)
     sass (3.2.9)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
