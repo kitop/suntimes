@@ -5,7 +5,8 @@ GEM
       rack
     daemons (1.2.3)
     eventmachine (1.0.9.1)
-    haml (4.0.3)
+    haml (5.0.0)
+      temple (>= 0.8.0)
       tilt
     mini_portile2 (2.4.0)
     nokogiri (1.10.8)
@@ -13,6 +14,7 @@ GEM
     oj (2.0.14)
     rack (1.6.11)
     sass (3.2.9)
+    temple (0.8.2)
     thin (1.6.4)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
